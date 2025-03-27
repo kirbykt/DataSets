@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wine Class Predictor - Dark Mode with Sliders</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px 40px;
+            border-radius: 14px;
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
+            width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            color: #dddddd;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .value-display {
+            float: right;
+            font-weight: bold;
+            color: #4da6ff;
+        }
+
+        input[type="submit"] {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0077cc;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .result-text {
+            text-align: center;
+            color: #4da6ff;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Wine Class Predictor</h2>
+        <form action="/predict" method="post">
+
+            <!-- Alcohol -->
+            <label>Alcohol: <span class="value-display" id="val0">13.0</span></label>
+            <input type="range" name="0" min="11" max="15" step="0.1" value="13.0" oninput="val0.innerText = this.value"><br>
+
+            <!-- Malic Acid -->
+            <label>Malic Acid: <span class="value-display" id="val1">2.5</span></label>
+            <input type="range" name="1" min="0.7" max="5.8" step="0.1" value="2.5" oninput="val1.innerText = this.value"><br>
+
+            <!-- Ash -->
+            <label>Ash: <span class="value-display" id="val2">2.4</span></label>
+            <input type="range" name="2" min="1.3" max="3.2" step="0.1" value="2.4" oninput="val2.innerText = this.value"><br>
+
+            <!-- Alcalinity of Ash -->
+            <label>Alcalinity of Ash: <span class="value-display" id="val3">18.0</span></label>
+            <input type="range" name="3" min="10" max="30" step="1" value="18" oninput="val3.innerText = this.value"><br>
+
+            <!-- Magnesium -->
+            <label>Magnesium: <span class="value-display" id="val4">100</span></label>
+            <input type="range" name="4" min="70" max="160" step="1" value="100" oninput="val4.innerText = this.value"><br>
+
+            <!-- Total Phenols -->
+            <label>Total Phenols: <span class="value-display" id="val5">2.5</span></label>
+            <input type="range" name="5" min="0.9" max="4.0" step="0.1" value="2.5" oninput="val5.innerText = this.value"><br>
+
+            <!-- Flavanoids -->
+            <label>Flavanoids: <span class="value-display" id="val6">2.5</span></label>
+            <input type="range" name="6" min="0.3" max="5.0" step="0.1" value="2.5" oninput="val6.innerText = this.value"><br>
+
+            <!-- Nonflavanoid Phenols -->
+            <label>Nonflavanoid Phenols: <span class="value-display" id="val7">0.3</span></label>
+            <input type="range" name="7" min="0.1" max="0.7" step="0.01" value="0.3" oninput="val7.innerText = this.value"><br>
+
+            <!-- Proanthocyanins -->
+            <label>Proanthocyanins: <span class="value-display" id="val8">1.5</span></label>
+            <input type="range" name="8" min="0.3" max="3.5" step="0.1" value="1.5" oninput="val8.innerText = this.value"><br>
+
+            <!-- Color Intensity -->
+            <label>Color Intensity: <span class="value-display" id="val9">5.0</span></label>
+            <input type="range" name="9" min="1.2" max="13.0" step="0.1" value="5.0" oninput="val9.innerText = this.value"><br>
+
+            <!-- Hue -->
+            <label>Hue: <span class="value-display" id="val10">1.0</span></label>
+            <input type="range" name="10" min="0.5" max="1.7" step="0.01" value="1.0" oninput="val10.innerText = this.value"><br>
+
+            <!-- OD280/OD315 of Diluted Wines -->
+            <label>OD280/OD315 of Diluted Wines: <span class="value-display" id="val11">3.0</span></label>
+            <input type="range" name="11" min="1.2" max="4.0" step="0.1" value="3.0" oninput="val11.innerText = this.value"><br>
+
+            <!-- Proline -->
+            <label>Proline: <span class="value-display" id="val12">1000</span></label>
+            <input type="range" name="12" min="280" max="1700" step="10" value="1000" oninput="val12.innerText = this.value"><br>
+
+            <div class="clearfix"></div>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <div class="result-text">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
