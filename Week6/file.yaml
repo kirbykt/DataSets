@@ -1,0 +1,9 @@
+columns:
+- mint
+- slot_min
+- slot_graduated
+- has_graduated
+dataset_name: train_data
+file_type: csv
+inbound_delimiter: ','
+output_delimiter: '|'
